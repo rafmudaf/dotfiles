@@ -1,0 +1,61 @@
+# source global definitions
+if [ -f /etc/profile ]; then
+  . /etc/profile
+fi
+
+# Environment Configurations
+# Change Prompt
+  export PS1="\u@\w: "
+
+# Set Default Editor (change 'Nano' to the editor of your choice)
+  export EDITOR=/usr/bin/nano
+
+# Set default blocksize for ls, df, du
+# from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
+  export BLOCKSIZE=1k
+
+# Add color to terminal
+# from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+  export CLICOLOR=1
+  export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# Aliases and Function
+  alias ls='ls -G'
+  alias la='ls -a'
+  alias ll='ls -lht'
+  alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+  alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
+  alias atom='open -a Atom\ Beta'
+  alias pdf='open -a Preview'
+  alias subl='open -a Sublime\ Text'
+  alias pv='/Applications/ParaView-5.3.0.app/Contents/MacOS/paraview'
+  alias ~="cd ~"                              # ~:            Go Home
+  alias c='clear'                             # c:            Clear terminal display
+  alias which='type -all'                     # which:        Find executables
+  alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+  alias show_options='shopt'                  # Show_options: display bash options settings
+  alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+  alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+  trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+  ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
+  alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
+  alias startmysql='sudo launchctl load -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
+  alias stopmysql='sudo launchctl unload -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
+  tcp () { echo -n $1 | pbcopy; }
+  printpath(){ sed 's/:/\n/g' <<< "$PATH"}
+  countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l }
+
+# Set Path
+  PATH="/usr/local/git/bin:/sw/bin:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+
+  # MAP++
+  DYLD_LIBRARY_PATH="/Users/rmudafor/Desktop/MAP_v1.20.10/src${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}"
+
+  # OPENFAST
+  PATH="/Users/rmudafor/Development/openfast/install/bin:$PATH"
+
+  # SPACK
+  export SPACK_ROOT=${HOME}/spack
+  . $SPACK_ROOT/share/spack/setup-env.sh
+
+  export PATH
