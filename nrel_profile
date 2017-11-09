@@ -37,6 +37,9 @@ fi
   countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l }
 
 # Environment Variables
+  # Homebrew GitHub access token
+  export HOMEBREW_GITHUB_API_TOKEN=""
+
   # SPACK
   export SPACK_ROOT=${HOME}/spack
   . $SPACK_ROOT/share/spack/setup-env.sh
