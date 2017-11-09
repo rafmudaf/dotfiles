@@ -3,29 +3,22 @@ if [ -f /etc/profile ]; then
   . /etc/profile
 fi
 
-# Environment Configurations
-# Change Prompt
-  export PS1="\u@\w: "
-
-# Set Default Editor (change 'Nano' to the editor of your choice)
+# Configure the shell environment
+  export PS1="mbp@\w: "
   export EDITOR=/usr/bin/nano
+  export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
-# Set default blocksize for ls, df, du
-# from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
-  export BLOCKSIZE=1k
-
-# Add color to terminal
-# from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+# Add color to terminal, from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
   export CLICOLOR=1
   export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# Aliases and Function
+# Aliases and Functions
   alias ls='ls -G'
   alias la='ls -a'
   alias ll='ls -lht'
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
   alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
-  alias atom='open -a Atom\ Beta'
+  alias atom='open -a Atom'
   alias pdf='open -a Preview'
   alias subl='open -a Sublime\ Text'
   alias pv='/Applications/ParaView-5.3.0.app/Contents/MacOS/paraview'
@@ -39,11 +32,20 @@ fi
   trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
   ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
   alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
-  alias startmysql='sudo launchctl load -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
-  alias stopmysql='sudo launchctl unload -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
   tcp () { echo -n $1 | pbcopy; }
   printpath(){ sed 's/:/\n/g' <<< "$PATH"}
   countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l }
+
+# Environment Variables
+  # SPACK
+  export SPACK_ROOT=${HOME}/spack
+  . $SPACK_ROOT/share/spack/setup-env.sh
+
+  # Configure Python Virtual Environment
+  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+  export WORKON_HOME=$HOME/.virtualenvs   # optional
+  export PROJECT_HOME=$HOME/projects      # optional
+  source /usr/local/bin/virtualenvwrapper.sh
 
 # Set Path
   PATH="/usr/local/git/bin:/sw/bin:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
@@ -54,8 +56,7 @@ fi
   # OPENFAST
   PATH="/Users/rmudafor/Development/openfast/install/bin:$PATH"
 
-  # SPACK
-  export SPACK_ROOT=${HOME}/spack
-  . $SPACK_ROOT/share/spack/setup-env.sh
+  # mbdyn
+  PATH="/usr/local/mbdyn/bin:$PATH"
 
   export PATH
