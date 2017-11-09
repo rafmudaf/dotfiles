@@ -33,8 +33,8 @@ fi
   ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
   alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
   tcp () { echo -n $1 | pbcopy; }
-  printpath(){ sed 's/:/\n/g' <<< "$PATH"}
-  countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l }
+  printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
+  countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l; }
 
 # Environment Variables
   # Homebrew GitHub access token
