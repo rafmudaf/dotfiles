@@ -9,13 +9,23 @@ fi
   export BLOCKSIZE=1k # Set default blocksize for ls, df, du http://hints.macworld.com/comment.php?mode=view&cid=24491
 
 # Aliases and Functions
+# Aliases and Functions
   alias ls='ls -G'
   alias la='ls -a'
   alias ll='ls -lht'
-  alias f='open -a Finder ./'
-  alias x='open -a Xcode'
+  alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+  alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
   alias pdf='open -a Preview'
+  alias subl='open -a Sublime\ Text'
+  alias ~="cd ~"                              # ~:            Go Home
+  alias c='clear'                             # c:            Clear terminal display
+  alias which='type -all'                     # which:        Find executables
+  alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+  alias show_options='shopt'                  # Show_options: display bash options settings
+  alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+  alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
   tcp () { echo -n $1 | pbcopy; }
+  printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
   mans () { man $1 | grep -iC2 --color=always $2 | less; } # Search manpage given in agument '1' for term given in argument '2' (case insensitive) Example: mans mplayer codec
 
   alias startmysql='sudo launchctl load -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
@@ -25,10 +35,6 @@ fi
   # ImageMagick
   export DISPLAY=:0
   export DYLD_LIBRARY_PATH
-
-  # SPACK
-  export SPACK_ROOT=${HOME}/spack
-  . $SPACK_ROOT/share/spack/setup-env.sh
 
   # Configure Python Virtual Environment
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
