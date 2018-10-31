@@ -4,7 +4,7 @@
   fi
 
 # Configure the shell environment
-  export PS1='mbp@\w $(__git_ps1 " (%s)")\$ '
+  export PS1='mbp@\w$(__git_ps1 " (%s)")\$ '
   export EDITOR=/usr/bin/nano
   export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
