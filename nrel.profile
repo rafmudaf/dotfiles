@@ -54,9 +54,12 @@
   export EDITOR=/usr/bin/nano
   export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
-# Add color to terminal, from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+  # add color to terminal, from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
   export CLICOLOR=1
   export LSCOLORS=ExFxBxDxCxegedabagacad
+
+  # source git specific bash scripts
+  source ~/.git-completion.bash
 
 # Aliases and Functions
   alias ls='ls -G'
