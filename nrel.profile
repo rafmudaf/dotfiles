@@ -1,53 +1,53 @@
 # source global definitions
-if [ -f /etc/profile ]; then
-  . /etc/profile
-fi
+  if [ -f /etc/profile ]; then
+    . /etc/profile
+  fi
 
 # get current branch in git repo
-function parse_git_branch() {
-BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-if [ ! "${BRANCH}" == "" ]; then
-  STAT=`parse_git_dirty`
-  echo "[${BRANCH}${STAT}]"
-else
-  echo ""
-fi
-}
+  function parse_git_branch() {
+    BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+    if [ ! "${BRANCH}" == "" ]; then
+      STAT=`parse_git_dirty`
+      echo "[${BRANCH}${STAT}]"
+    else
+      echo ""
+    fi
+  }
 
 # get current status of git repo
-function parse_git_dirty {
-  status=`git status 2>&1 | tee`
-  dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-  untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-  ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-  newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-  renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-  deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-  bits=''
-  if [ "${renamed}" == "0" ]; then
-    bits=">${bits}"
-  fi
-  if [ "${ahead}" == "0" ]; then
-    bits="*${bits}"
-  fi
-  if [ "${newfile}" == "0" ]; then
-    bits="+${bits}"
-  fi
-  if [ "${untracked}" == "0" ]; then
-    bits="?${bits}"
-  fi
-  if [ "${deleted}" == "0" ]; then
-    bits="x${bits}"
-  fi
-  if [ "${dirty}" == "0" ]; then
-    bits="!${bits}"
-  fi
-  if [ ! "${bits}" == "" ]; then
-    echo " ${bits}"
-  else
-    echo ""
-  fi
-}
+  function parse_git_dirty {
+    status=`git status 2>&1 | tee`
+    dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+    untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+    ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+    newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+    renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+    deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+    bits=''
+    if [ "${renamed}" == "0" ]; then
+      bits=">${bits}"
+    fi
+    if [ "${ahead}" == "0" ]; then
+      bits="*${bits}"
+    fi
+    if [ "${newfile}" == "0" ]; then
+      bits="+${bits}"
+    fi
+    if [ "${untracked}" == "0" ]; then
+      bits="?${bits}"
+    fi
+    if [ "${deleted}" == "0" ]; then
+      bits="x${bits}"
+    fi
+    if [ "${dirty}" == "0" ]; then
+      bits="!${bits}"
+    fi
+    if [ ! "${bits}" == "" ]; then
+      echo " ${bits}"
+    else
+      echo ""
+    fi
+  }
 
 # Configure the shell environment
   export PS1="mbp@\w \`parse_git_branch\`$ "
@@ -65,7 +65,6 @@ function parse_git_dirty {
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
   alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
   alias pdf='open -a Preview'
-  alias subl='open -a Sublime\ Text'
   alias ~="cd ~"                              # ~:            Go Home
   alias c='clear'                             # c:            Clear terminal display
   alias which='type -all'                     # which:        Find executables
@@ -78,6 +77,7 @@ function parse_git_dirty {
   printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
   mans () { man $1 | grep -iC2 --color=always $2 | less; } # Search manpage given in agument '1' for term given in argument '2' (case insensitive) Example: mans mplayer codec
   sudome() { sudo dscl . append /Groups/admin GroupMembership `whoami`; }
+  trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 
   # openfast
   countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l; }
@@ -85,6 +85,7 @@ function parse_git_dirty {
   # mbdyn
   confmbd() { ./configure --enable-runtime-loading --with-module="kitefastmbd"; }
   cleanmbd() { rm *.out *.ine *.jnt *.log *.mov *.act *.frc *.sum *.bylog; }
+  cleanpre() { rm *.beam *.nodes *.structural *.elements KiteMain*; }
   alias mbdpre='python /Users/rmudafor/Development/makani/KiteFAST/MBDYN/preprocessor/preprocess.py'
   alias pushgerrit='git push origin HEAD:refs/for/master'
 
@@ -104,6 +105,11 @@ function parse_git_dirty {
 
   # intel tools
   source /opt/intel/debugger_2018/bin/debuggervars.sh
+  source /opt/intel/bin/compilervars.sh intel64
+  export MKLROOT=/opt/intel/compilers_and_libraries/mac/mkl
+
+  # emscripten
+  #source /Users/rmudafor/Development/emsdk/emsdk_env.sh
 
 # Set Path
   PATH="/usr/local:/usr/local/sbin:$PATH"
@@ -115,7 +121,7 @@ function parse_git_dirty {
   PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/:$PATH"
 
   # OPENFAST
-  PATH="/Users/rmudafor/Development/openfast/build/glue-codes/fast:/Users/rmudafor/Development/openfast/build/modules-local/beamdyn:$PATH"
+  PATH="/Users/rmudafor/Development/openfast/build/glue-codes/openfast:/Users/rmudafor/Development/openfast/build/modules-local/beamdyn:$PATH"
 
   # MAP++
   DYLD_LIBRARY_PATH="/Users/rmudafor/Desktop/MAP_v1.20.10/src${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}"
