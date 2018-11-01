@@ -4,7 +4,8 @@
   fi
 
 # Configure the shell environment
-  export PS1='mbp@\w$(__git_ps1 " (%s)")\$ '
+  source ~/.colors.bash
+  export PS1="$BBlack>>mbp@$BYellow\w $Purple\$(__git_ps1 '(%s)')$BBlack\$ $Color_Off"
   export EDITOR=/usr/bin/nano
   export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
@@ -33,6 +34,7 @@
   alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
   alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
   alias wget='wget --no-check-certificate'
+  alias grep='grep --color=auto'
   tcp () { echo -n $1 | pbcopy; }
   printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
   mans () { man $1 | grep -iC2 --color=always $2 | less; } # Search manpage given in agument '1' for term given in argument '2' (case insensitive) Example: mans mplayer codec
