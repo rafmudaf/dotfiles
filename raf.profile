@@ -4,11 +4,21 @@ if [ -f /etc/profile ]; then
 fi
 
 # Configure the shell environment
-  export PS1="\u@\W$ "
+  source ~/.colors.bash
+  export PS1="\u@$BYellow\W$Purple\$(__git_ps1 '(%s)')$BBlack\$ $Color_Off"
   export EDITOR=/usr/bin/nano
-  export BLOCKSIZE=1k # Set default blocksize for ls, df, du http://hints.macworld.com/comment.php?mode=view&cid=24491
+  export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
-# Aliases and Functions
+  # add color to terminal, from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+  export CLICOLOR=1
+  export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# source git specific bash scripts
+  source ~/.git-completion.bash  # installed with git from homebrew at /usr/local/etc/bash_completion.d/git-completion.bash
+  source ~/.git-prompt.sh        # installed with git from homebrew at /usr/local/etc/bash_completion.d/git-prompt.sh
+  export GIT_PS1_SHOWDIRTYSTATE=yes
+  export GIT_PS1_SHOWSTASHSTATE=yes
+
 # Aliases and Functions
   alias ls='ls -G'
   alias la='ls -a'
@@ -27,7 +37,7 @@ fi
   tcp () { echo -n $1 | pbcopy; }
   printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
   mans () { man $1 | grep -iC2 --color=always $2 | less; } # Search manpage given in agument '1' for term given in argument '2' (case insensitive) Example: mans mplayer codec
-
+  alias startvnc='vncserver :4 -geometry 2400x1500 -depth 24'
   alias startmysql='sudo launchctl load -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
   alias stopmysql='sudo launchctl unload -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
 
@@ -43,6 +53,9 @@ fi
   source /usr/local/bin/virtualenvwrapper.sh
 
 # Set Path
+  # my custom utilities
+  PATH="/Users/raf/Development/utilities:$PATH"
+
   # homebrew path setup
   PATH="/usr/local/sbin:$PATH"
 
@@ -61,3 +74,8 @@ fi
   export SWIFTENV_ROOT="$HOME/.swiftenv"
   export PATH="$SWIFTENV_ROOT/bin:$PATH"
   eval "$(swiftenv init -)"
+
+  # latex
+  PATH="/usr/local/texlive/2018/bin/x86_64-darwin:$PATH"
+
+  export PATH
