@@ -57,7 +57,7 @@
   export FC=/usr/local/bin/gfortran-7
 
   # Homebrew GitHub access token
-  export HOMEBREW_GITHUB_API_TOKEN="4bf7871b312d7946210d455c3639f9aa66796092"
+  export HOMEBREW_GITHUB_API_TOKEN=""
 
   # Configure Python Virtual Environment
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
