@@ -5,7 +5,7 @@ fi
 
 # Configure the shell environment
   source ~/.colors.bash
-  export PS1="\u@$BYellow\W$Purple\$(__git_ps1 '(%s)')$BBlack\$ $Color_Off"
+  export PS1="$BGreen>>\u@$BBlue\w $BPurple\$(__git_ps1 '(%s)')$BBlack\$ $Color_Off"
   export EDITOR=/usr/bin/nano
   export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
