@@ -1,4 +1,3 @@
-
 # Configure the shell environment
   source ~/.colors.bash
   export PS1="$BGreen>>eagle@$BBlue\w $BPurple\$(__git_ps1 '(%s)')$BRed\$ $Color_Off"
@@ -11,46 +10,36 @@
   export GIT_PS1_SHOWSTASHSTATE=yes
 
 # Aliases and Functions
-  alias open='xdg-open'
+  alias ls='ls -G'
+  alias la='ls -a'
+  alias ll='ls -lht'
   alias ~="cd ~"                              # ~:            Go Home
   alias c='clear'                             # c:            Clear terminal display
   alias which='type -all'                     # which:        Find executables
   alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-  alias show_options='shopt'                  # Show_options: display bash options settings
-  alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
   alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
   alias wget='wget --no-check-certificate'
   alias grep='grep --color=auto'
-  tcp () { echo -n $1 | pbcopy; }
   printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
-  mans () { man $1 | grep -iC2 --color=always $2 | less; } # Search manpage given in agument '1' for term given in argument '2' (case insensitive) Example: mans mplayer codec
 
+  # specific to this computer
+  alias open='xdg-open'
+
+  # hpc
   alias anynode='srun --export=ALL -A hfm -t 04:00:00 --job-name=openfast_testing --ntasks=24 --pty bash'
   alias gpu='srun --export=ALL -A hfm -t 04:00:00 -p=gpu --job-name=openfast_testing --ntasks=24 --pty bash'
   alias jobs='qstat -u rmudafor'
 
+  # intel tools
   alias vtune='amplxe-gui'
   alias advisor='advixe-gui'
 
-# Environment Variables
-  # default fortran compiler
-  # export FC=/usr/bin/gfortran-7
-
-  # Configure Python Virtual Environment
-  #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-  #export WORKON_HOME=$HOME/.virtualenvs   # optional
-  #export PROJECT_HOME=$HOME/projects      # optional
-  #source /usr/local/bin/virtualenvwrapper.sh
-
-# Set Path
+# Set Path and Environment Variables
   # my custom code utilities
   PATH="/home/rmudafor/Development/utils/:$PATH"
 
   # OPENFAST
-  PATH="/home/rmudafor/Development/openfast/build/glue-codes/openfast:/home/rmudafor/Development/openfast/build/modules-local/beamdyn:$PATH"
-
-  # mbdyn
-  PATH="/usr/local/mbdyn/bin:$PATH"
+  PATH="/home/rmudafor/Development/openfast/build/glue-codes/openfast:/home/rmudafor/Development/openfast/build/modules/beamdyn:$PATH"
 
   export PATH
 
@@ -67,10 +56,6 @@
     _commonmodules
     #module load netlib-lapack/3.8.0
     module load gcc/7.3.0
-
-    #export FC=/nopt/nrel/ecom/ecp/base/c/spack/opt/spack/linux-centos7-x86_64/gcc-6.2.0/gcc-7.3.0-xr2wbli4udl6h55smqvzrrms4vkwz75k/bin/gfortran
-    #export CC=/nopt/nrel/ecom/ecp/base/c/spack/opt/spack/linux-centos7-x86_64/gcc-6.2.0/gcc-7.3.0-xr2wbli4udl6h55smqvzrrms4vkwz75k/bin/gcc
-    #export CXX=/nopt/nrel/ecom/ecp/base/c/spack/opt/spack/linux-centos7-x86_64/gcc-6.2.0/gcc-7.3.0-xr2wbli4udl6h55smqvzrrms4vkwz75k/bin/g++
   }
 
   intelmodules() {
