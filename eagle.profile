@@ -10,7 +10,6 @@
   export GIT_PS1_SHOWSTASHSTATE=yes
 
 # Aliases and Functions
-  alias ls='ls -G'
   alias la='ls -a'
   alias ll='ls -lht'
   alias ~="cd ~"                              # ~:            Go Home
@@ -29,7 +28,7 @@
   # hpc
   alias anynode='srun --export=ALL -A hfm -t 04:00:00 --job-name=openfast_testing --ntasks=24 --pty bash'
   alias gpu='srun --export=ALL -A hfm -t 04:00:00 -p=gpu --job-name=openfast_testing --ntasks=24 --pty bash'
-  alias jobs='qstat -u rmudafor'
+  alias jobs='sacct -u rmudafor'
 
   # intel tools
   alias vtune='amplxe-gui'
@@ -67,4 +66,5 @@
   }
 
   # load the intel modules by default
-  intelmodules
+  ## commented due to a bug in the fastx environment
+  # intelmodules
