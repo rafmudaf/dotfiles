@@ -21,6 +21,7 @@
   alias wget='wget --no-check-certificate'
   alias grep='grep --color=auto'
   printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
+  printlist(){ sed 's/:/\n/g' <<< "$1"; }
 
   # specific to this computer
   alias open='xdg-open'

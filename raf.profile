@@ -31,6 +31,7 @@
   alias wget='wget --no-check-certificate'
   alias grep='grep --color=auto'
   printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
+  printlist(){ sed 's/:/\n/g' <<< "$1"; }
   
   # specific to this computer
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
