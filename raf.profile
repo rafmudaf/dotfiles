@@ -58,6 +58,7 @@
 
   # homebrew path setup
   PATH="/usr/local/sbin:$PATH"
+  PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 
   # CUDA
   PATH="/Developer/NVIDIA/CUDA-8.0/bin${PATH:+:${PATH}}"
