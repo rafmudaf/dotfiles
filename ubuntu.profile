@@ -26,7 +26,7 @@
   # specific to this computer
   alias open='xdg-open'
 
-# Set Path and Environment Variables
+# Set Path and other environment variables
   # default fortran compiler
   export FC=/usr/bin/gfortran-7
 
@@ -42,4 +42,8 @@
   # mbdyn
   PATH="/usr/local/mbdyn/bin:$PATH"
 
+  # runtime libs
+  LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH"
+  
+  export LD_LIBRARY_PATH
   export PATH
