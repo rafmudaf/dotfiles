@@ -10,7 +10,7 @@
   export GIT_PS1_SHOWSTASHSTATE=yes
 
 # Aliases and Functions
-  alias ls='ls -G'
+#   alias ls='ls -G'
   alias la='ls -a'
   alias ll='ls -lht'
   alias ~="cd ~"                              # ~:            Go Home
