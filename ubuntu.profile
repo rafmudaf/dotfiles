@@ -1,7 +1,7 @@
 # Configure the shell environment
   source ~/.colors.bash
   export PS1="$BGreen>>ubuntu@$BBlue\w $BPurple\$(__git_ps1 '(%s)')$BRed\$ $Color_Off"
-  export EDITOR=/usr/bin/nano
+  export EDITOR=/bin/nano
   export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
 # source git specific bash scripts
@@ -30,8 +30,8 @@
   # default fortran compiler
   export FC=/usr/bin/gfortran-7
 
-  # get vtune environment
-  source /opt/intel/vtune_amplifier_2019.0.2.570779/amplxe-vars.sh
+  # intel developer tools
+  source /home/raf/intel/parallel_studio_xe_2019/psxevars.sh
 
   # my custom code utilities
   PATH="/home/raf/Development/utils/:$PATH"
@@ -41,6 +41,9 @@
 
   # mbdyn
   PATH="/usr/local/mbdyn/bin:$PATH"
+
+  # qt
+  export Qt5_DIR="/usr/lib/x86_64-linux-gnu/"
 
   # runtime libs
   LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH"
