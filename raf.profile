@@ -50,7 +50,7 @@
   # Configure Python Virtual Environment
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
   export WORKON_HOME=$HOME/.virtualenvs   # optional
-  export PROJECT_HOME=$HOME/projects      # optional
+  export PROJECT_HOME=$HOME/Development   # optional
   source /usr/local/bin/virtualenvwrapper.sh
 
   # my custom utilities

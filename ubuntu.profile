@@ -27,6 +27,12 @@
   alias open='xdg-open'
 
 # Set Path and other environment variables
+  # Configure Python Virtual Environment
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  export WORKON_HOME=$HOME/.virtualenvs
+  export PROJECT_HOME=$HOME/Development
+  source /home/raf/.local/bin/virtualenvwrapper.sh
+
   # default fortran compiler
   export FC=/usr/bin/gfortran-7
 
