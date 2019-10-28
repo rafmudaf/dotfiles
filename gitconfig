@@ -10,10 +10,11 @@
     bra = branch -avv
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(black)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
     rmv = remote -v
+    unstage = reset HEAD
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
 [http]
-	cookiefile = ~/.gitcookies
+    cookiefile = ~/.gitcookies
