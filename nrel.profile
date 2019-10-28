@@ -30,8 +30,8 @@
   alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
   alias wget='wget --no-check-certificate'
   alias grep='grep --color=auto'
-  printpath(){ sed 's/:/\n/g' <<< "$PATH"; }
-  printlist(){ sed 's/:/\n/g' <<< "$1"; }
+  printpath(){ gsed 's/:/\n/g' <<< "$PATH"; }
+  printlist(){ gsed 's/:/\n/g' <<< "$1"; }
   
   # specific to this computer
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
@@ -47,9 +47,9 @@
 
   # mbdyn
   confmbd() { ./configure --enable-runtime-loading --with-module="kitefastmbd"; }
-  cleanmbd() { rm *.out *.ine *.jnt *.log *.mov *.act *.frc *.sum *.bylog; }
+  cleanmbd() { rm *.out *.ine *.jnt *.log *.mov *.act *.frc *.sum *.bylog *.csv *.ech *.V*i *.A*i; }
   cleanpre() { rm *.beam *.body *.nodes *.structural *.elements KiteMain*; }
-  alias mbdpre='python /Users/rmudafor/Development/makani/makani_openfast/glue-codes/kitefast/preprocessor/preprocess.py'
+  alias mbdpre='python /Users/rmudafor/Development/makani/sandbox/glue-codes/kitefast/preprocessor/preprocess.py'
   alias kitemain='/usr/local/mbdyn/bin/mbdyn KiteMain.mbd'
   alias pushgerrit='git push origin HEAD:refs/for/master'
 
@@ -87,6 +87,9 @@
 
   # my custom code utilities
   PATH="/Users/rmudafor/Development/utils:$PATH"
+
+  # OpenCV
+  # PATH="/usr/local/Cellar/opencv/4.1.1_2/include/opencv4:$PATH"
 
   # swift - add xcode tools to path
   PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
