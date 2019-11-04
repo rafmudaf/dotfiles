@@ -86,7 +86,7 @@
   PATH="/usr/local:/usr/local/sbin:$PATH"
 
   # my custom code utilities
-  PATH="/Users/rmudafor/Development/utils:$PATH"
+  PATH="/Users/rmudafor/Development/utilities:$PATH"
 
   # OpenCV
   # PATH="/usr/local/Cellar/opencv/4.1.1_2/include/opencv4:$PATH"
