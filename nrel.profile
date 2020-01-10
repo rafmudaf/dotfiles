@@ -49,7 +49,7 @@
   confmbd() { ./configure --enable-runtime-loading --with-module="kitefastmbd"; }
   cleanmbd() { rm *.out *.ine *.jnt *.log *.mov *.act *.frc *.sum *.bylog *.csv *.ech *.V*i *.A*i; }
   cleanpre() { rm *.beam *.body *.nodes *.structural *.elements KiteMain*; }
-  alias mbdpre='python /Users/rmudafor/Development/makani/sandbox/glue-codes/kitefast/preprocessor/preprocess.py'
+  alias mbdpre='python3 /Users/rmudafor/Development/makani/sandbox/glue-codes/kitefast/preprocessor/preprocess.py'
   alias kitemain='/usr/local/mbdyn/bin/mbdyn KiteMain.mbd'
   alias pushgerrit='git push origin HEAD:refs/for/master'
 
@@ -65,6 +65,22 @@
   export WORKON_HOME=$HOME/.virtualenvs   # optional
   export PROJECT_HOME=$HOME/projects      # optional
   source /usr/local/bin/virtualenvwrapper.sh
+
+  # conda setup
+  condasetup() {
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/rmudafor/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/rmudafor/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/rmudafor/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/rmudafor/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+  }
 
   # intel tools
   inteltools() {
