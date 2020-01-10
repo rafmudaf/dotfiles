@@ -1,8 +1,16 @@
 
-home_directory=/home/raf
-target_profile=ubuntu.profile
-dotfiles=$home_directory/Development/dotfiles
+##########
+# Configures the bash and git environments
 
+home=$HOME
+dotfiles=$home/Development/dotfiles
+
+# set the system as one of [eagle nrel raf ubuntu]
+system=nrel
+
+##########
+
+# Helper function to create a link
 force_create_link() {
     source=$1
     destination=$2
@@ -12,8 +20,29 @@ force_create_link() {
     ln -s $source $destination    
 }
 
-cd $home_directory
-force_create_link $dotfiles/$target_profile .$target_profile
-force_create_link $dotfiles/colors.bash .colors.bash
-force_create_link $dotfiles/gitconfig .gitconfig
-force_create_link /etc/bash_completion.d/git-prompt .git-prompt.sh
+# Configure the bash environment
+configfiles=(colors.bash common.bash)
+for f in ${configfiles[@]}; do
+    force_create_link $dotfiles/$f $home/.$f
+done
+force_create_link $dotfiles/$system.profile $home/.$system.profile
+
+# Configure the git environment
+configfiles=(gitconfig)
+for f in ${configfiles[@]}; do
+    cp $dotfiles/$f $home/.$f
+done
+if [[ $system == "eagle" ]]; then
+    echo "TODO: configure for install on eagle"
+elif [[ $system == "nrel" ]]; then
+    force_create_link /usr/local/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
+    force_create_link /usr/local/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
+elif [[ $system == "raf" ]]; then
+    force_create_link /usr/local/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
+    force_create_link /usr/local/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
+elif [[ $system == "ubuntu" ]]; then
+    force_create_link /etc/bash_completion.d/git-prompt $home/.git-prompt.sh
+fi
+
+# Source the bash profile
+source $home/.$system.profile
