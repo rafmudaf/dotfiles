@@ -3,37 +3,24 @@
     . /etc/profile
   fi
 
-# Configure the shell environment
-  source ~/.colors.bash
+# Get the common bash configuration
+  source ~/.common.bash
+
+# Configure for NREL MBP
   export PS1="$BGreen>>mbp@$BBlue\w $BPurple\$(__git_ps1 '(%s)')$BBlack\$ $Color_Off"
   export EDITOR=/usr/bin/nano
-  export BLOCKSIZE=1k # Set default blocksize for ls, df, du, from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 
   # add color to terminal, from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
   export CLICOLOR=1
   export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# source git specific bash scripts
-  source ~/.git-completion.bash  # installed with git from homebrew at /usr/local/etc/bash_completion.d/git-completion.bash
-  source ~/.git-prompt.sh        # installed with git from homebrew at /usr/local/etc/bash_completion.d/git-prompt.sh
-  export GIT_PS1_SHOWDIRTYSTATE=yes
-  export GIT_PS1_SHOWSTASHSTATE=yes
+  # source git specific bash scripts
+  # installed with git from homebrew at
+  #  /usr/local/etc/bash_completion.d/git-completion.bash
+  #  /usr/local/etc/bash_completion.d/git-prompt.sh
+  source ~/.git-completion.bash
 
-# Aliases and Functions
-  alias ls='ls -G'
-  alias la='ls -a'
-  alias ll='ls -lht'
-  alias ~="cd ~"                              # ~:            Go Home
-  alias c='clear'                             # c:            Clear terminal display
-  alias which='type -all'                     # which:        Find executables
-  alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-  alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
-  alias wget='wget --no-check-certificate'
-  alias grep='grep --color=auto'
-  printpath(){ gsed 's/:/\n/g' <<< "$PATH"; }
-  printlist(){ gsed 's/:/\n/g' <<< "$1"; }
-  
-  # specific to this computer
+  # mac-specific aliases and functions
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
   alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
   alias pdf='open -a Preview' 
@@ -53,8 +40,6 @@
   alias kitemain='/usr/local/mbdyn/bin/mbdyn KiteMain.mbd'
   alias pushgerrit='git push origin HEAD:refs/for/master'
 
-  # docker cli
-  dockerbash() { docker run -it $1 /bin/bash; }
 
 # Set Path and Environment Variables
   # Homebrew GitHub access token
