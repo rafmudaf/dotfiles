@@ -2,15 +2,19 @@
     name = Rafael M Mudafort
     email = rafmudaf@gmail.com
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    last = log -1 HEAD
-    br = branch
-    bra = branch -avv
+    co = checkout           # git co
+    st = status             # git st
+    last = log -1 HEAD      # git last
+    bra = branch -avv       # git bra
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(black)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-    rmv = remote -v
-    unstage = reset HEAD
+    rmv = remote -v         # git mv
+    unstage = reset HEAD    # git unstage <file>
+    f = fetch --all         # git f
+
+    # I've never actually used these
+    # br = branch
+    # ci = commit
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
