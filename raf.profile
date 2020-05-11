@@ -66,3 +66,5 @@
   PATH="/usr/local/texlive/2018/bin/x86_64-darwin:$PATH"
 
   export PATH
+
+  export BASH_SILENCE_DEPRECATION_WARNING=1
