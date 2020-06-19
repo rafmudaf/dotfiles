@@ -66,10 +66,11 @@
     fi
     unset __conda_setup
   }
+  condasetup
 
   # intel tools
   inteltools() {
-    source /opt/intel/debugger_2018/bin/debuggervars.sh
+    source /opt/intel/debugger_2020/bin/debuggervars.sh
     source /opt/intel/bin/compilervars.sh intel64
     source /opt/intel/mkl/bin/mklvars.sh intel64 mod
     export MKLROOT=/opt/intel/compilers_and_libraries/mac/mkl
@@ -95,16 +96,11 @@
   # swift - add xcode tools to path
   PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 
-  # ruby gem and installed gems
-  PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.5.0/bin:$PATH"
-
-  # OPENFAST
-  PATH="/Users/rmudafor/Development/openfast/build/glue-codes/openfast:/Users/rmudafor/Development/openfast/build/modules/beamdyn:$PATH"
-
   # mbdyn
   PATH="/usr/local/mbdyn/bin:$PATH"
 
-  # homebrew's make (higher version than mac's)
+  # Homebrew's make and sed (higher version than mac's)
   PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-
+  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  
   export PATH
