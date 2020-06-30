@@ -3,7 +3,6 @@
 
 # Configure the shell environment
   source ~/.colors.bash
-  export PS1="$BGreen>>ubuntu@$BBlue\w $BPurple\$(__git_ps1 '(%s)')$BRed\$ $Color_Off"
   export BLOCKSIZE=1k # Set default units when ls, df, du display object size
 
 # source git specific bash scripts
