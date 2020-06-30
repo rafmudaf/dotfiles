@@ -22,7 +22,6 @@
 
   # mac-specific aliases and functions
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-  alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
   alias pdf='open -a Preview' 
   tcp () { echo -n $1 | pbcopy; }
 
@@ -32,18 +31,31 @@
   alias stopmysql='sudo launchctl unload -F  /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
 
 # Set Path and Environment Variables
-  # Configure Python Virtual Environment
-  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-  export WORKON_HOME=$HOME/.virtualenvs   # optional
-  export PROJECT_HOME=$HOME/Development   # optional
-  source /usr/local/bin/virtualenvwrapper.sh
+  # conda setup
+  condasetup() {
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/raf/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/raf/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/raf/opt/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/raf/opt/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+  }
+  condasetup
 
   # my custom utilities
   PATH="/Users/raf/Development/utilities:$PATH"
 
-  # homebrew path setup
+  # Homebrew path setup
+  # Brew's make and sed are higher version than mac's
   PATH="/usr/local/sbin:$PATH"
   PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
   # CUDA
   PATH="/Developer/NVIDIA/CUDA-8.0/bin:$PATH"
@@ -62,9 +74,7 @@
   export PATH="$SWIFTENV_ROOT/bin:$PATH"
   eval "$(swiftenv init -)"
 
-  # latex
-  PATH="/usr/local/texlive/2018/bin/x86_64-darwin:$PATH"
-
   export PATH
 
+  # Silences the macOS warning to update to ZSH
   export BASH_SILENCE_DEPRECATION_WARNING=1
