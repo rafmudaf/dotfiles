@@ -22,7 +22,6 @@
 
   # mac-specific aliases and functions
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-  alias x='open -a Xcode'                     # x file:       Opens an ascii text file in Xcode
   alias pdf='open -a Preview' 
   tcp () { echo -n $1 | pbcopy; }
   alias fseagle='sshfs eagle:/home/rmudafor/Development/openfast_performance eagle/'
@@ -38,19 +37,8 @@
   cleanpre() { rm *.beam *.body *.nodes *.structural *.elements KiteMain*; }
   alias mbdpre='python3 /Users/rmudafor/Development/makani/sandbox/glue-codes/kitefast/preprocessor/preprocess.py'
   alias kitemain='/usr/local/mbdyn/bin/mbdyn KiteMain.mbd'
-  alias pushgerrit='git push origin HEAD:refs/for/master'
-
 
 # Set Path and Environment Variables
-  # Homebrew GitHub access token
-  export HOMEBREW_GITHUB_API_TOKEN=""
-
-  # Configure Python Virtual Environment
-  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-  export WORKON_HOME=$HOME/.virtualenvs   # optional
-  export PROJECT_HOME=$HOME/projects      # optional
-  source /usr/local/bin/virtualenvwrapper.sh
-
   # conda setup
   condasetup() {
     # !! Contents within this block are managed by 'conda init' !!
@@ -85,22 +73,19 @@
   }
   gnutools
 
-  PATH="/usr/local:/usr/local/sbin:$PATH"
+  # Homebrew path setup
+  # Brew's make and sed are higher version than mac's
+  PATH="/usr/local/sbin:$PATH"
+  PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
   # my custom code utilities
   PATH="/Users/rmudafor/Development/utilities:$PATH"
-
-  # OpenCV
-  # PATH="/usr/local/Cellar/opencv/4.1.1_2/include/opencv4:$PATH"
 
   # swift - add xcode tools to path
   PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 
   # mbdyn
   PATH="/usr/local/mbdyn/bin:$PATH"
-
-  # Homebrew's make and sed (higher version than mac's)
-  PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
   
   export PATH
