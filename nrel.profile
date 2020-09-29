@@ -7,7 +7,7 @@
   source ~/.common.bash
 
 # Configure for NREL MBP
-  export PS1="$BGreen>>mbp@$BBlue\w $BPurple\$(__git_ps1 '(%s)')$BBlack\$ $Color_Off"
+  export PS1="$BGreen>>mbp@$BCyan\w $BPurple\$(__git_ps1 '(%s)')$BRed\$ $Color_Off"
   export EDITOR=/usr/bin/nano
 
   # add color to terminal, from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
@@ -42,14 +42,14 @@
   # conda setup
   condasetup() {
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/Users/rmudafor/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/Users/rmudafor/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/Users/rmudafor/miniconda3/etc/profile.d/conda.sh"
+        if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/opt/miniconda3/etc/profile.d/conda.sh"
         else
-            export PATH="/Users/rmudafor/miniconda3/bin:$PATH"
+            export PATH="/opt/miniconda3/bin:$PATH"
         fi
     fi
     unset __conda_setup
@@ -58,7 +58,7 @@
 
   # intel tools
   inteltools() {
-    source /opt/intel/debugger_2020/bin/debuggervars.sh
+    source /opt/intel/bin/debuggervars.sh
     source /opt/intel/bin/compilervars.sh intel64
     source /opt/intel/mkl/bin/mklvars.sh intel64 mod
     export MKLROOT=/opt/intel/compilers_and_libraries/mac/mkl
@@ -69,9 +69,8 @@
   gnutools() {
     # gcc 7 is now gcc@7 in homebrew so it does not link to gcc and gfortran
     # thus, export the FC variable
-    export FC=/usr/local/bin/gfortran-7
+    export FC=/usr/local/bin/gfortran
   }
-  gnutools
 
   # Homebrew path setup
   # Brew's make and sed are higher version than mac's
@@ -87,5 +86,8 @@
 
   # mbdyn
   PATH="/usr/local/mbdyn/bin:$PATH"
-  
+
   export PATH
+
+  # Silences the macOS warning to update to ZSH
+  export BASH_SILENCE_DEPRECATION_WARNING=1
