@@ -58,13 +58,10 @@
 
   # intel tools
   inteltools() {
-    source /opt/intel/bin/debuggervars.sh
-    source /opt/intel/bin/compilervars.sh intel64
-    source /opt/intel/mkl/bin/mklvars.sh intel64 mod
-    export MKLROOT=/opt/intel/compilers_and_libraries/mac/mkl
-    export FC=/usr/local/bin/ifort
+    source /opt/intel/oneapi/setvars.sh
+    export FC=/opt/intel/oneapi/compiler/latest/mac/bin/intel64/ifort
   }
-  
+
   # gnu tools - use these as default
   gnutools() {
     export FC=/usr/local/bin/gfortran

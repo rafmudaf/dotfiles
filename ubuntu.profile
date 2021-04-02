@@ -12,21 +12,13 @@
 
   # intel tools
   inteltools() {
-    source /opt/intel/debugger_2020/bin/debuggervars.sh
-    source /opt/intel/bin/compilervars.sh intel64
-    source /opt/intel/mkl/bin/mklvars.sh intel64 mod
-    export MKLROOT=/opt/intel/compilers_and_libraries/linux/mkl
-    export FC=/usr/bin/ifort
-
-    # intel developer tools
-    # source $HOME/intel/parallel_studio_xe_2019/psxevars.sh
+    source /opt/intel/oneapi/setvars.sh   
+    export FC=/opt/intel/oneapi/compiler/latest/linux/bin/intel64/ifort
   }
   
   # gnu tools - use these as default
   gnutools() {
-    # gcc 7 is now gcc@7 in homebrew so it does not link to gcc and gfortran
-    # thus, export the FC variable
-    export FC=/usr/bin/gfortran-7
+    export FC=/usr/bin/gfortran-10
   }
   gnutools
 
