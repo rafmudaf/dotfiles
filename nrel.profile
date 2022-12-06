@@ -94,5 +94,10 @@
 
   export PATH
 
+  # Starting on macOS Catalina (10.15) the headers used for various system libraries have
+  # been moved from their previous location. This can be solved by setting SDKROOT in
+  # your shell configuration to the value provided by xcrun.
+  export SDKROOT=$(xcrun --show-sdk-path)
+
   # Silences the macOS warning to update to ZSH
   export BASH_SILENCE_DEPRECATION_WARNING=1
