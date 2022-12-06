@@ -24,7 +24,6 @@
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
   alias pdf='open -a Preview' 
   tcp () { echo -n $1 | pbcopy; }
-  alias fseagle='sshfs eagle:/home/rmudafor/Development/openfast_performance eagle/'
   sudome() { sudo dscl . append /Groups/admin GroupMembership `whoami`; }
 
   # openfast
@@ -59,12 +58,21 @@
   # intel tools
   inteltools() {
     source /opt/intel/oneapi/setvars.sh
-    export FC=/opt/intel/oneapi/compiler/latest/mac/bin/intel64/ifort
+    export MKLROOT=/opt/intel/oneapi/mkl/latest
+    export FC=/usr/local/bin/ifort
+    export CXX=/usr/local/bin/icpc
+    export CC=/usr/local/bin/icc
+    export CFLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include
+    export CPPFLAGS=$CFLAGS
+    export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include    
+    export LIBRARY_PATH=$LIBRARY_PATH:/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/lib
   }
 
   # gnu tools - use these as default
   gnutools() {
-    export FC=/usr/local/bin/gfortran
+    export FC=/usr/local/bin/gfortran-12
+    export CXX=/usr/local/bin/g++-12
+    export CC=/usr/local/bin/gcc-12
   }
   gnutools
 
@@ -73,6 +81,7 @@
   PATH="/usr/local/sbin:$PATH"
   PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
   PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"
 
   # my custom code utilities
   PATH="/Users/rmudafor/Development/utilities:$PATH"
