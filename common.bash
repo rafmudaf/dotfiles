@@ -24,3 +24,5 @@
 
   # docker cli
   dockerbash() { docker run -it $1 /bin/bash; }
+
+  verbosecommand() { echo ">>> $1" && eval $1 && echo "<<<"; }

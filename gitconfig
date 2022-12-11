@@ -11,6 +11,7 @@
     rmv = remote -v         # git mv
     unstage = reset HEAD    # git unstage <file>
     f = fetch --all         # git f
+    cp = cherry-pick        # git cp <commit>
 
     # I've never actually used these
     # br = branch
