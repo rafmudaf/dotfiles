@@ -7,7 +7,8 @@ dotfiles=$home/Development/dotfiles
 
 # set the system as one of [eagle nrel raf ubuntu]
 system=nrel
-
+# brewdir=/usr/local      # homebrew install directory for intel mac
+brewdir=/opt/homebrew   # homebrew install directory for arm mac
 ##########
 
 # Helper function to create a link
@@ -35,8 +36,8 @@ done
 if [[ $system == "eagle" ]]; then
     echo "TODO: configure for install on eagle"
 elif [[ $system == "nrel" ]]; then
-    force_create_link /usr/local/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
-    force_create_link /usr/local/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
+    force_create_link $brewdir/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
+    force_create_link $brewdir/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
 elif [[ $system == "raf" ]]; then
     force_create_link /usr/local/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
     force_create_link /usr/local/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
