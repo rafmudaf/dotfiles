@@ -70,11 +70,19 @@
 
   # gnu tools - use these as default
   gnutools() {
-    export FC=/usr/local/bin/gfortran-12
-    export CXX=/usr/local/bin/g++-12
-    export CC=/usr/local/bin/gcc-12
+    export FC=/opt/homebrew/bin/gfortran-13
+    export CXX=/opt/homebrew/bin/g++-13
+    export CC=/opt/homebrew/bin/gcc-13
   }
-  gnutools
+  # gnutools
+
+  # llvm tools
+  llvmtools() {
+    export FC=/opt/homebrew/bin/gfortran-13
+    export CXX=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+    export CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+  }
+  # llvmtools
 
   # Homebrew path setup
   # Brew's make and sed are higher version than mac's
