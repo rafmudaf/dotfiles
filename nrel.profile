@@ -20,6 +20,17 @@
   #  /usr/local/etc/bash_completion.d/git-prompt.sh
   source ~/.git-completion.bash
 
+  # Source bash completions
+  # These packages are installed with homebrew
+  brewdir=/opt/homebrew
+  # The git completions sourced above and in common.sh are handled
+  # differently so that they work on all systems with these dotfiles.
+  # This block of tools are not installed on all systems.
+  source $brewdir/etc/bash_completion.d/brew
+  source $brewdir/etc/bash_completion.d/cmake
+  # source $brewdir/etc/bash_completion.d/ctest
+  source $brewdir/etc/bash_completion.d/gh
+
   # mac-specific aliases and functions
   alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
   alias pdf='open -a Preview' 
