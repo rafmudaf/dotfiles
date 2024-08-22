@@ -12,6 +12,7 @@ be sure to read through them all to configure your information properly.
 |-----------|--------------------|----------|--------------|
 | `nrel.profile` | Bash | `~/.nrel.profile` | Bash configuration file for my NREL computers; sourced by `.bashrc` |
 | `eagle.profile` | Bash | `~/.eagle.profile` | Bash configuration for my account on NREL's Eagle supercomputer; sourced by `.bashrc` |
+| `kestrel.profile` | Bash | `~/.kestrel.profile` | Bash configuration for my account on NREL's Kestrel supercomputer; sourced by `.bashrc` |
 | `ubuntu.profile` | Bash | `~/.ubuntu.profile` | Bash configuration for a few Linux computers that I've used in the past; sourced by `.bashrc` |
 | `raf.profile` | Bash | `~/.raf.profile` | Bash configuration for my personal computer; sourced by `.bashrc` |
 | `common.bash` | Bash | `~/.common.bash` | Bash configurations that are common across all systems; this is sourced by a `.profile` |
