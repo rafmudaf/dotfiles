@@ -9,9 +9,9 @@
   alias open='xdg-open'
 
   # hpc
-  alias anynode='srun --export=ALL -A hfm -t 04:00:00 --job-name=openfast_testing --ntasks=24 --pty bash'
-  alias debugnode='srun --export=ALL -A hfm -t 01:00:00 -p debug --job-name=openfast_testing --ntasks=2 --pty bash'
-  alias gpu='srun --export=ALL -A hfm -t 04:00:00 -p gpu --job-name=openfast_testing --ntasks=24 --pty bash'
+  alias anynode='srun --export=ALL -A ssc -t 04:00:00 --job-name=floris_testing --ntasks=24 --pty bash'
+  alias debugnode='srun --export=ALL -A ssc -t 01:00:00 -p debug --job-name=floris_testing --ntasks=2 --pty bash'
+  alias gpu='srun --export=ALL -A ssc -t 04:00:00 -p gpu-h100s --job-name=floris_testing --ntasks=24 --gpus=1 --pty bash'
   alias jobs='sacct -u rmudafor'
 
   # intel tools
@@ -67,12 +67,21 @@
 #     # <<< conda initialize <<<
 #   }
 
-#   _condamodules() {
-#     module purge
-#     module load conda/5.3
-#   }
-
   # openfast_conda() {
-  #   _condamodules
+  #   module load conda/2024.06.1
   #   source activate openfast
   # }
+
+  defaultmodules() {
+    module purge
+    module load conda/2024.06.1
+    perftools-lite
+  }
+
+  defaultmodulesgpu() {
+    module purge
+    module load conda/2022.05
+    module load PrgEnv-nvidia
+    module load cuda/12.3
+    # perftools-lite
+  }
