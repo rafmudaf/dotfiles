@@ -13,6 +13,7 @@
 # Aliases and Functions
   alias la='ls -a'
   alias ll='ls -lht'
+  alias lt='ls -lt'
   alias ~="cd ~"                              # ~:            Go Home
   alias c='clear'                             # c:            Clear terminal display
   alias which='type -all'                     # which:        Find executables
