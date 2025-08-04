@@ -41,12 +41,12 @@
   countOF(){ grep -rn "OpenFAST terminated normally." . | wc -l; }
   printrtest(){ echo "git clone -b <branch> --recursive https://github.com/<fork>/openfast && cd openfast && mkdir build && cd build && cmake .. -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON && make -j 8 install && ctest -j 8"; }
 
-  # mbdyn
-  confmbd() { ./configure --enable-runtime-loading --with-module="kitefastmbd"; }
-  cleanmbd() { rm *.out *.ine *.jnt *.log *.mov *.act *.frc *.sum *.bylog *.csv *.ech *.V*i *.A*i; }
-  cleanpre() { rm *.beam *.body *.nodes *.structural *.elements KiteMain*; }
-  alias mbdpre='python3 /Users/rmudafor/Development/makani/sandbox/glue-codes/kitefast/preprocessor/preprocess.py'
-  alias kitemain='/usr/local/mbdyn/bin/mbdyn KiteMain.mbd'
+  # # mbdyn
+  # confmbd() { ./configure --enable-runtime-loading --with-module="kitefastmbd"; }
+  # cleanmbd() { rm *.out *.ine *.jnt *.log *.mov *.act *.frc *.sum *.bylog *.csv *.ech *.V*i *.A*i; }
+  # cleanpre() { rm *.beam *.body *.nodes *.structural *.elements KiteMain*; }
+  # alias mbdpre='python3 /Users/rmudafor/Development/makani/sandbox/glue-codes/kitefast/preprocessor/preprocess.py'
+  # alias kitemain='/usr/local/mbdyn/bin/mbdyn KiteMain.mbd'
 
 # Set Path and Environment Variables
   # conda setup
@@ -114,8 +114,8 @@
   # swift - add xcode tools to path
   PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 
-  # mbdyn
-  PATH="/usr/local/mbdyn/bin:$PATH"
+  # # mbdyn
+  # PATH="/usr/local/mbdyn/bin:$PATH"
 
   export PATH
 
