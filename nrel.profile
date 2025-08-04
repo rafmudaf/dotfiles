@@ -87,11 +87,11 @@
 
   # gnu tools - use these as default
   gnutools() {
-    export FC=/opt/homebrew/bin/gfortran-13
-    export CXX=/opt/homebrew/bin/g++-13
-    export CC=/opt/homebrew/bin/gcc-13
+    export FC=/opt/homebrew/bin/gfortran-14
+    export CXX=/opt/homebrew/bin/g++-14
+    export CC=/opt/homebrew/bin/gcc-14
   }
-  # gnutools
+  gnutools
 
   # llvm tools
   llvmtools() {
