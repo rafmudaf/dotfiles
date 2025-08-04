@@ -24,3 +24,5 @@
     required = true
 [http]
     cookiefile = ~/.gitcookies
+[init]
+	defaultBranch = main
