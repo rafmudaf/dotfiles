@@ -117,6 +117,26 @@
   # # mbdyn
   # PATH="/usr/local/mbdyn/bin:$PATH"
 
+  # Adds bundle and jekyll to the path
+  PATH="/usr/local/opt/ruby/bin:$PATH"
+  PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+  
+  # Node, Node Package Manager, and Node Version Manager
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+  # LDFLAGS="-L/usr/local/opt/ruby/lib:$LDFLAGS"
+  CPPFLAGS="-I/usr/local/opt/ruby/include:$CPPFLAGS"
+  
+  # LDFLAGS="-L/usr/local/opt/libffi/lib:$LDFLAGS"
+  CPPFLAGS="-I/usr/local/opt/libffi/include:$CPPFLAGS"
+  
+  # LDFLAGS="$brewdir/lib:$LDFLAGS"
+  CPPFLAGS="-I$brewdir/include/graphviz"
+
+  export LDFLAGS
+  export CPPFLAGS
   export PATH
 
   # Starting on macOS Catalina (10.15) the headers used for various system libraries have
