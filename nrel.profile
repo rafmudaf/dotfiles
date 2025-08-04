@@ -146,3 +146,6 @@
 
   # Silences the macOS warning to update to ZSH
   export BASH_SILENCE_DEPRECATION_WARNING=1
+
+  # OpenCL context
+  export PYOPENCL_CTX=''
