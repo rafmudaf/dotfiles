@@ -103,10 +103,10 @@
 
   # Homebrew path setup
   # Brew's make and sed are higher version than mac's
-  PATH="/usr/local/sbin:$PATH"
-  PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-  PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"
+  PATH="$brewdir/sbin:$PATH"
+  PATH="$brewdir/opt/make/libexec/gnubin:$PATH"
+  PATH="$brewdir/opt/gnu-sed/libexec/gnubin:$PATH"
+  PATH="$brewdir/opt/gnu-time/libexec/gnubin:$PATH"
 
   # my custom code utilities
   PATH="/Users/rmudafor/Development/utilities:$PATH"
