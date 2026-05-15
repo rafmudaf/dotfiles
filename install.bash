@@ -5,9 +5,8 @@
 home=$HOME
 dotfiles=$home/Development/dotfiles
 
-# set the system as one of [eagle nrel raf ubuntu]
-system=nrel
-# brewdir=/usr/local      # homebrew install directory for intel mac
+# set the system as one of [kestrel mac ubuntu]
+system=mac
 brewdir=/opt/homebrew   # homebrew install directory for arm mac
 ##########
 
@@ -31,16 +30,13 @@ force_create_link $dotfiles/$system.profile $home/.$system.profile
 # Configure the git environment
 configfiles=(gitconfig)
 for f in ${configfiles[@]}; do
-    cp $dotfiles/$f $home/.$f
+    force_create_link $dotfiles/$f $home/.$f
 done
-if [[ $system == "eagle" ]]; then
+if [[ $system == "kestrel" ]]; then
     echo "TODO: configure for install on eagle"
-elif [[ $system == "nrel" ]]; then
+elif [[ $system == "mac" ]]; then
     force_create_link $brewdir/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
     force_create_link $brewdir/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
-elif [[ $system == "raf" ]]; then
-    force_create_link /usr/local/etc/bash_completion.d/git-completion.bash $home/.git-completion.bash
-    force_create_link /usr/local/etc/bash_completion.d/git-prompt.sh $home/.git-prompt.sh
 elif [[ $system == "ubuntu" ]]; then
     force_create_link /etc/bash_completion.d/git-prompt $home/.git-prompt.sh
 fi
